@@ -1,0 +1,49 @@
+﻿@model Chapter02Bookstore.Models.Book
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add a new book</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="title">Title</label>
+                    </td>
+                    <td>
+                        @Html.EditorFor(x => x.Title, new { maxlength = "300" })
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <label>Autor name:</label>
+        @Html.EditorFor(x => x.Author, new { maxlength = "300"})
+    </div>
+    <div>
+        @Html.TextAreaFor(x => x.Description, new { cols = "92", rows = "15"  })  
+    </div>
+    <div>
+        <label>Price:</label>
+        @Html.EditorFor(x => x.Price, new { maxlength = "300"})
+    </div>
+    <div>
+        <label>Year published:</label>
+        @Html.EditorFor(x => x.YearPublished, new { minlength = "4", maxlength = "4"})
+    </div>
+
+    if (!@ViewData.ModelState.IsValid)
+    {
+          @Html.ValidationSummary("Oops! Failed to add the book because:")
+    }
+    
+    <p>
+        <input type="submit" value="Add this book"/>
+    </p>
+}

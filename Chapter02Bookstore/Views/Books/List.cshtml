@@ -1,0 +1,16 @@
+﻿@model System.Collections.Generic.List<Chapter02Bookstore.Models.Book>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Books list</h2>
+
+<div>@ViewBag.Title</div>
+
+@foreach (var book in Model)
+{
+    <div>
+        <a href="#"><p>@book.Title</p></a>
+    </div>
+}
