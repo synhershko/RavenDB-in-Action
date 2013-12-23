@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Raven.Abstractions.Data;
+using Raven.Client.Bundles.MoreLikeThis;
+using Raven.Client.Connection;
 using Chapter06.Models;
 using Raven.Client;
 using Raven.Client.Document;
@@ -134,12 +136,88 @@ namespace Chapter06.FullTextSearch
             }
 
             // TODO highlights
+
+            Console.WriteLine("Printing authors list straight from the index...");
+            var terms = store.DatabaseCommands.GetTerms("BooksIndex", "AuthorUntokenized", null, 128);
+            foreach (var term in terms)
+            {
+                Console.WriteLine("\t" + term);
+            }
+            Console.WriteLine();
+            WaitForUser();
+            
+            Console.WriteLine("Demonstrating suggestions - querying the index for author \"brwon\"...");
+            using (var session = store.OpenSession())
+            {
+                var query = session.Query<Book>("BooksIndex").Search(x => x.Author, "brwon");
+                var results = query.ToList();
+                Console.WriteLine("Query for \"brwon\" returned " + results.Count + " results.");
+                WaitForUser();
+
+                if (results.Count == 0)
+                {
+                    Console.WriteLine("Asking for suggestions:");
+                    var suggestions = query.Suggest();
+                    foreach (var suggestion in suggestions.Suggestions)
+                    {
+                        Console.WriteLine("\t" + suggestion);
+                    }
+                }
+            }
+            WaitForUser();
+
+            Console.WriteLine("MoreLikeThis");
+            using (var session = store.OpenSession())
+            {
+                // TODO
+                var list = session.Advanced.MoreLikeThis<Book>("BooksIndex",
+                                                               new MoreLikeThisQuery
+                                                                   {
+                                                                       DocumentId = "books/2",
+                                                                       Fields = new[] {"Title", "Author", "Description"},
+                                                                       MinimumWordLength = 2,
+                                                                   });
+                PrintBookResults(list);
+            }
+
+            Console.WriteLine("Faceted search...");
+            using (var session = store.OpenSession())
+            {
+                var facets = session.Query<Book>("BooksIndex")
+                    // Any Where() clause can go here
+                       .ToFacets(new List<Facet>
+                                     {
+                                         new Facet {Name = "AuthorUntokenized"},
+                                         new Facet
+                                             {
+                                                 Name = "Price_Range",
+                                                 Mode = FacetMode.Ranges,
+                                                 Ranges = new List<string>
+                                                              {
+                                                                  "[NULL TO Dx20.0]",
+                                                                  "[Dx20.0 TO Dx50.0]",
+                                                                  "[Dx50.0 TO Dx200.0]",
+                                                                  "[Dx200.0 TO Dx400.0]",
+                                                                  "[Dx400.0 TO NULL]",                                                                  
+                                                              }
+                                             },
+                                     });
+
+                foreach (var facetResult in facets.Results)
+                {
+                    Console.WriteLine("* " + facetResult.Key);
+                    foreach (var facetValue in facetResult.Value.Values)
+                    {
+                        Console.WriteLine("\t" + facetValue.Range + ": " + facetValue.Hits);
+                    }
+                }
+            }
         }
 
 
-        private static void PrintBookResults(List<Book> books)
+        private static void PrintBookResults(IEnumerable<Book> books)
         {
-            if (books.Count == 0)
+            if (!books.Any())
             {
                 Console.WriteLine("\tNo results were found :(");
             }
@@ -151,6 +229,11 @@ namespace Chapter06.FullTextSearch
                 }
             }
             Console.WriteLine();
+            WaitForUser();
+        }
+
+        private static void WaitForUser()
+        {
             Console.WriteLine("(press any key to continue the demo)");
             Console.ReadKey();
             Console.SetCursorPosition(0, Console.CursorTop - 1);
