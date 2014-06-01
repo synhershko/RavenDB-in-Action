@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter01", "Chapter01\Chapter01.csproj", "{46E90E71-5AB6-46BA-ACEF-D02E2AD9FBE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter02Bookstore", "Chapter02Bookstore\Chapter02Bookstore.csproj", "{6AE129D0-4EFB-428E-B93E-A8EA0E4E55E1}"
@@ -12,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter06.FullTextSearch", "Chapter06.FullTextSearch\Chapter06.FullTextSearch.csproj", "{36A16F8D-E4EB-48C0-8936-BA1B4737E5A9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter06.Reporting", "Chapter06.Reporting\Chapter06.Reporting.csproj", "{9BE47B86-3B95-43E6-B68F-9AEAE05526DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter07.Replication", "Chapter07.Replication\Chapter07.Replication.csproj", "{43EE818D-FB19-422E-8059-10EFE82B471A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter7.Sharding", "Chapter7.Sharding\Chapter7.Sharding.csproj", "{1F7447E6-D19D-41DD-9B99-2AEF07BB55A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +49,14 @@ Global
 		{9BE47B86-3B95-43E6-B68F-9AEAE05526DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BE47B86-3B95-43E6-B68F-9AEAE05526DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BE47B86-3B95-43E6-B68F-9AEAE05526DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43EE818D-FB19-422E-8059-10EFE82B471A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43EE818D-FB19-422E-8059-10EFE82B471A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43EE818D-FB19-422E-8059-10EFE82B471A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43EE818D-FB19-422E-8059-10EFE82B471A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F7447E6-D19D-41DD-9B99-2AEF07BB55A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F7447E6-D19D-41DD-9B99-2AEF07BB55A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F7447E6-D19D-41DD-9B99-2AEF07BB55A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F7447E6-D19D-41DD-9B99-2AEF07BB55A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
