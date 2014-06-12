@@ -166,10 +166,10 @@
     <Content Include="Views\Books\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Books\Edit.cshtml" />
+    <Content Include="Views\Books\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Books\List.cshtml" />
+    <Content Include="Views\Books\Edit.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

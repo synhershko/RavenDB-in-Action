@@ -10,8 +10,7 @@ namespace Chapter02Bookstore
     // visit http://go.microsoft.com/?LinkId=9394801
     public class MvcApplication : System.Web.HttpApplication
     {
-        private static IDocumentStore documentStore;
-        public static IDocumentStore TheDocumentStore { get { return documentStore; } }
+        public static IDocumentStore TheDocumentStore { get; private set; }
 
         protected void Application_Start()
         {
@@ -21,11 +20,11 @@ namespace Chapter02Bookstore
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            documentStore = new DocumentStore
+            TheDocumentStore = new DocumentStore
                                 {
                                     ConnectionStringName = "RavenDB"
                                 };
-            documentStore.Initialize();
+            TheDocumentStore.Initialize();
         }
     }
 }
