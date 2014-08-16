@@ -67,7 +67,7 @@ namespace Chapter01
                 var book = session.Load<Book>("books/1");
                 session.Delete(book); // marks the document to be deleted
 
-                session.Advanced.Defer(new DeleteCommandData { Key = "posts/1234" });
+                session.Advanced.Defer(new DeleteCommandData { Key = "books/1" });
                 session.SaveChanges(); // performs the actual deletion
             }
 
