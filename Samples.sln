@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter06.Reporting", "Chap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter07.Replication", "Chapter07.Replication\Chapter07.Replication.csproj", "{43EE818D-FB19-422E-8059-10EFE82B471A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter7.Sharding", "Chapter7.Sharding\Chapter7.Sharding.csproj", "{1F7447E6-D19D-41DD-9B99-2AEF07BB55A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter07.Sharding", "Chapter07.Sharding\Chapter07.Sharding.csproj", "{1F7447E6-D19D-41DD-9B99-2AEF07BB55A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
